@@ -1,0 +1,8 @@
+orochi.base
+orochi.view
+gradio
+gradio_rangeslider
+plotly
+py3dmol
+networkx
+numpy
