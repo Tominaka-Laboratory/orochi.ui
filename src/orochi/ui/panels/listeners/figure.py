@@ -447,12 +447,14 @@ def plot_interactive_pdfget(module):
                     row=1,
                     col=2,
                 )
-        if "q_fq" in data and "fq" in data:
-            fig.add_trace(
-                go.Scatter(x=data["q_fq"], y=data["fq"], mode="lines", name="F(Q)", line=dict(color="purple")),
-                row=2,
-                col=1,
-            )
+        if "fq" in data:
+            q_fq = data["q"] if "q" in data and len(data["q"]) == len(data["fq"]) else data.get("q_fq")
+            if q_fq is not None and len(q_fq) == len(data["fq"]):
+                fig.add_trace(
+                    go.Scatter(x=q_fq, y=data["fq"], mode="lines", name="F(Q)", line=dict(color="purple")),
+                    row=2,
+                    col=1,
+                )
         r = data["r"]
         gr = data["Gr"]
         rmin = module["rmin"] if module["rmin"] is not None else 0.0
